@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Bevo Study Buddy",
+  "version": "1.0",
+  "description": "An extension for the Bevo Study Buddy Website, to accompany you when you're getting assignments done!",
+  "permissions": ["tabs"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "cowgirlhat.png",
+      "48": "cowgirlboots.png",
+      "128": "bevo.png"
+    }
+  },
+  "icons": {
+    "16": "cowgirlhat.png",
+    "48": "cowgirlboots.png",
+    "128": "bevo.png"
+  }
+}    

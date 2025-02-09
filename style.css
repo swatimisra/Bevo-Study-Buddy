@@ -1,0 +1,160 @@
+body {
+  font-family: Arial, sans-serif;
+  background-image: url('https://cdn.glitch.global/3eda76a0-ef83-4105-86ce-80fcd186c376/wanted-western-poster-template_23-2151302138.png?v=1739084516405'); /* Path to your image */
+  background-size: cover;
+  background-position: contain; 
+  background-repeat: no-repeat;
+  color: #5c3a21;
+  text-align: center;
+  margin: 100;
+  padding: 100;
+}
+
+#tabs {
+  display: flex;
+  position: sticky;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.tab-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #5c3a21;
+  color: white;
+  border: none;
+  border-radius: 5px 5px 0 0;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+.tab-button.active {
+  background-color: #7a4f32;
+}
+
+.page {
+  display: none;
+  padding: 20px;
+}
+
+.page.active {
+  display: block;
+}
+
+#longhorn-container {
+  position: relative;
+  margin: 30px auto;
+}
+
+#longhorn {
+  width: 500px;
+  height: auto;
+}
+
+#longhorn-accessories {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#timer-input-container {
+  margin-top: 20px;
+}
+
+.input-group {
+  margin-bottom: 10px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.input-group input {
+  padding: 10px;
+  font-size: 16px;
+  width: 100px;
+  border: 2px solid #5c3a21;
+  border-radius: 5px;
+  text-align: center;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #5c3a21;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #7a4f32;
+}
+
+.inventory-progress-bar {
+  height: 20px; /* Increased height to accommodate text */
+  background-color: #BF5700;
+  width: 0%;
+  transition: width 0.5s ease;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  border: black;
+}
+
+.progress-bar-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.home-container {
+  background-color: #f4e9d8; /* White background */
+  padding: 20px; /* Adds space inside the box */
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Adds a subtle shadow */
+  margin: 20px auto; /* Centers the box and adds space around it */
+  max-width: 600px; /* Optional: Limits the width of the box */
+}
+
+.timer-container {
+  background-color: #f4e9d8; /* White background */
+  padding: 20px; /* Adds space inside the box */
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Adds a subtle shadow */
+  margin: 20px auto; /* Centers the box and adds space around it */
+  max-width: 400px; /* Optional: Limits the width of the box */
+}
+
+.inventory-container {
+  background-color: #f4e9d8; /* White background */
+  padding: 20px; /* Adds space inside the box */
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Adds a subtle shadow */
+  margin: 20px auto; /* Centers the box and adds space around it */
+  max-width: 1000px; /* Optional: Limits the width of the box */
+}
+
+.title {
+  font-family: 'Revalia', cursive;
+  font-size: 3em;
+  color: #BF5700;
+  margin: 0;
+}
+
+.subtitle{
+  font-family: 'Revalia', cursive;
+  font-size: 2em;
+  color: #BF5700;
+  margin: 0;
+}

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Wild West Timer</title>
+    <link rel="stylesheet" href="/style.css" />
+    <style>
+      /* Additional styles for progress ring and animations */
+      .progress-container {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        margin: 20px auto;
+      }
+
+      .progress-ring {
+        width: 100%;
+        height: 100%;
+        transform: rotate(-90deg);
+      }
+
+      .progress-ring-background {
+        fill: none;
+        stroke: #000; /* Black outline */
+        stroke-width: 10; /* Thickness of the outline */
+      }
+
+      .progress-ring-circle {
+        fill: none;
+        stroke: #BF5700; /* Progress bar color */
+        stroke-width: 8; /* Thickness of the ring */
+        stroke-dasharray: 565; /* Circumference of the circle (2 * π * r) */
+        stroke-dashoffset: 565; /* Initial offset to make it hollow */
+        transition: stroke-dashoffset 0.5s ease;
+      }
+
+      
+      .present {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 135px;
+          height: 130px;
+          border-radius: 50%;
+          background-image: url('https://cdn.glitch.global/50a15f72-9631-4dbd-86c9-f2ef1c8f0889/openart-image_qSfaKHSR_1739049992356_raw-removebg-preview.png?v=1739050546793'); /* Present image */
+          background-size: cover;
+          background-color: transparent;
+          transition: transform 0.5s ease;
+      }
+
+      .prize {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background-image: url("https://cdn.glitch.global/3eda76a0-ef83-4105-86ce-80fcd186c376/image-removebg-preview%20(3).png?v=1739088797516");
+        background-color: transparent;
+        background-size: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .timer {
+        font-size: 2em;
+        margin-top: 20px;
+      }
+
+      @keyframes openPresent {
+        0% {
+          transform: translate(-50%, -50%) scale(1);
+        }
+        50% {
+          transform: translate(-50%, -50%) scale(1.2);
+        }
+        100% {
+          transform: translate(-50%, -50%) scale(0);
+        }
+      }
+
+      @keyframes revealPrize {
+        0% {
+          transform: translate(-50%, -50%) scale(0);
+        }
+        100% {
+          transform: translate(-50%, -50%) scale(1);
+        }
+      }
+
+      @keyframes shake {
+        0% { transform: translate(-50%, -50%) rotate(0deg); }
+        25% { transform: translate(-50%, -50%) rotate(-5deg); }
+        50% { transform: translate(-50%, -50%) rotate(5deg); }
+        75% { transform: translate(-50%, -50%) rotate(-5deg); }
+        100% { transform: translate(-50%, -50%) rotate(0deg); }
+      }
+    .inventory {
+      margin: 50px auto 0; /* Center the inventory container */
+      width: 50%;          /* Ensure it takes up 90% of the width */
+      max-width: 1200px;   /* Optional: add a max-width to prevent it from stretching too much */
+    }
+
+    .inventory-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr); /* 5 columns */
+      grid-template-rows: repeat(2, 1fr);    /* 2 rows */
+      gap: 20px;
+      justify-items: center;  /* Center items inside grid cells */
+      justify-content: center; /* Center the grid itself */
+    }
+
+    .accessory {
+      text-align: center;
+      width: 150px;
+      padding: 15px;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    .accessory img {
+      width: 100px;
+      height: 100px;
+      border-radius: 10px;
+    }
+
+    .accessory.locked img {
+      filter: grayscale(100%);
+    }
+
+    .accessory.locked::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50px;
+      height: 50px;
+      background-image: url('https://cdn.glitch.global/b46069e7-37fd-43eb-99a5-309d3a7bfe66/image-removebg-preview.png?v=1739063172850'); /* Lock icon */
+      background-size: cover;
+      opacity: 0.7;
+    }
+
+    .accessory.locked span {
+      display: block;
+      margin-top: 10px;
+      font-size: 0.9em;
+      color: #888;
+    }
+    </style>
+    <script src="/script.js" defer></script>
+  </head>
+  <body>
+    <!-- Tabs -->
+    <div id="tabs">
+      <button id="home-tab" class="tab-button active" data-page="home-page">Home</button>
+      <button id="timer-tab" class="tab-button" data-page="timer-page">Timer</button>
+      <button id="customize-tab" class="tab-button" data-page="customize-page">Inventory</button>
+    </div>
+
+ <!-- Home Page -->
+<div id="home-page" class="page active">
+  <div class="home-container">
+    <h1 class="title">Welcome to the Wild West!</h1>
+    <h2 class = "subtitle"> With Bevo Study Buddy </h2>
+  <div id="longhorn-container">
+    <img
+      id="longhorn"
+      src="https://cdn.glitch.global/df1b9bda-b493-4e8c-9c49-53e5f355af50/bevo_base%20(1).png?v=1739063121349"
+      alt="Cute Longhorn"
+    />
+    <div id="longhorn-accessories"></div>
+  </div>
+  <div id="desert-background"></div>
+  <div id="timer-input-container">
+    <div class="input-group">
+      <label for="hours-input">Hours</label>
+      <input type="number" id="hours-input" placeholder="0" min="0" />
+    </div>
+    <div class="input-group">
+      <label for="minutes-input">Minutes</label>
+      <input type="number" id="minutes-input" placeholder="0" min="0" />
+    </div>
+    <button id="start-timer-btn">Start Timer</button>
+  </div>
+</div>
+</div>
+
+
+    <!-- Timer Page -->
+    <div id="timer-page" class="page hidden">
+      <div class="timer-container">
+      <h2>Time Left: <span id="time-left">00:00:00</span></h2>
+      <div class="progress-container">
+        <svg class="progress-ring">
+          <circle class="progress-ring-background" cx="100" cy="100" r="90"></circle>
+          <circle class="progress-ring-circle" cx="100" cy="100" r="90"></circle>
+        </svg>
+        <div class="present" id="present"></div>
+        <div class="prize" id="prize"></div>
+      </div>
+      <div class="timer" id="timer"></div>
+      <div class="input-group">
+        <label for="hours-input-timer">Hours</label>
+        <input type="number" id="hours-input-timer" placeholder="0" min="0" />
+      </div>
+      <div class="input-group">
+        <label for="minutes-input-timer">Minutes</label>
+        <input type="number" id="minutes-input-timer" placeholder="0" min="0" />
+      </div>
+      <button id="start-timer-btn-timer">Start Timer</button>
+      <button id="cancel-timer-btn">Cancel Timer</button>
+    </div>
+  </div>
+
+<!-- Inventory Page -->
+<div id="customize-page" class="page hidden">
+  <div class="inventory-container">
+  <h2>Your Inventory!</h2>
+  <div class="inventory">
+    <div class="inventory-grid">
+      <!-- Accessories will be rendered here -->
+    </div>
+  </div>
+</div>
+</div>
+
+
+    <!-- Audio element for celebration sound -->
+    <audio id="celebration-sound" src="https://cdn.glitch.global/50a15f72-9631-4dbd-86c9-f2ef1c8f0889/Project%201.mp3?v=1739051601504"></audio>
+  </body>
+</html>
