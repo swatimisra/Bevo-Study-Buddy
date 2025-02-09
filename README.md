@@ -8,7 +8,7 @@ Used as a chrome extension/website for students to access for free and use as a 
 ← `index.html`: This is the main web page for the site. The HTML defines the structure and content of the page using _elements_. You'll see references in the HTML to the JS and CSS files. 
 ← `style.css`: CSS files add styling rules to the content. The CSS applies styles to the elements in the HTML page.
 ← `script.js`: Interactivity aspect to the site with JavaScript. 
-← All pictures and assets
-
+← Assets Folder: All images, audios, and recorded video run through
+- Popup.html, Popup.js: Chrome extension code
 Open each file and check out the comments (in gray) for more info.
 
